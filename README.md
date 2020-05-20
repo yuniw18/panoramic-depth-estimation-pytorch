@@ -75,7 +75,7 @@ If you want to load only some part of the pre-trained model. check 'load_weights
 ### 4) Inference
 
 ~~~bash
-python3 main.py --rectilinear_mode --mode sample --val_path [YOUR_EVAL_DATA_PATH] --checkpoint_path [YOUR_CHECKPOINT_MODEL_PATH] --model_name [YOUR_MODEL_PATH] --KITTI
+python3 main.py --rectilinear_mode --mode sample --val_path [YOUR_EVAL_DATA_PATH] --checkpoint_path [YOUR_CHECKPOINT_MODEL_PATH] --model_name [YOUR_MODEL_PATH] --KITTI --input_width 1024 --input_height 256
 ~~~
 Results will be saved to 'YOUR_MODEL_PATH/evaluate' folder.
 ### 5) Training
