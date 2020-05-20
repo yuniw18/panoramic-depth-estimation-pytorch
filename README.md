@@ -81,7 +81,7 @@ Results will be saved to 'YOUR_MODEL_PATH/evaluate' folder.
 ### 5) Training
 
 ~~~bash
-python3 main.py --mode train --rectilinear_mode  --KITTI --model_name [YOUR_MODEL_PATH] --val_path [YOUR_EVAL_DATA_PATH] --lr 0.0001  --checkpoint_path [YOUR_CHECKPOINT_MODEL_PATH] --batch_size 8
+python3 main.py --mode train --rectilinear_mode  --KITTI --model_name [YOUR_MODEL_PATH] --val_path [YOUR_EVAL_DATA_PATH] --lr 0.0001  --checkpoint_path [YOUR_CHECKPOINT_MODEL_PATH] --batch_size 8 --kitti_train_path [KITTI_DATA_PATH]
 ~~~
 
 For equirectangular dataset, do
