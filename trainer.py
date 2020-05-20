@@ -28,6 +28,8 @@ class Train(object):
         self.eval_data_path = config.val_path
         self.l2_loss = L2Loss()
         self.model_name = config.model_name
+        self.input_height = config.input_height
+        self.input_width = config.input_width
         self.model_path = os.path.join(config.model_name,config.model_path)
         self.beta1 = config.beta1
         self.beta2 = config.beta2
@@ -373,8 +375,8 @@ class Train(object):
          
             original_height, original_width, num_channels = input_image.shape
         
-            input_height = 256
-            input_width = 1024
+            input_height = self.input_height
+            input_width = self.input_width
 
          
             minor_height = int(input_width/input_image.shape[1] * input_image.shape[0]/0.7191)
