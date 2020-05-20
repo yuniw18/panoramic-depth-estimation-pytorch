@@ -49,64 +49,43 @@ def main(config):
     
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    
-    parser.add_argument('--network_type',type=str,default='RectNet') # RectNet, UResNet
-    parser.add_argument('--experiment_name',type=str,default='omnidepth') # path where checkpoint will be saved in 'experiments'
 
-    parser.add_argument('--train_path',type=str,default='../3D60/splits/filtered/final_train2.txt') # text which contains train image list
-    parser.add_argument('--kitti_train_path',type=str,default='../3D60/splits/filtered/final_train2.txt') # text which contains train image list
+    parser.add_argument('--ThreeD_train_path',type=str,default='../3D60/splits/filtered/final_train2.txt') # list path of ThreeD dataset
+    parser.add_argument('--kitti_train_path',type=str,default='../3D60/splits/filtered/final_train2.txt') # Kitti data path
  
-    parser.add_argument('--val_path',type=str,default='./SAMPLE') # text which contains valid image list
-    parser.add_argument('--test_path',type=str,default='../3D60/splits/filtered/final_test.txt') # text which contains test image list
-
-    parser.add_argument('--test_folder_path',type=str,default='./demo_test/') # path where test image exist, used in mode:2
-
-
-    parser.add_argument('--output_path',type=str,default='./demo_results') # path where inferenced image will be saved, used in mode:2
+    parser.add_argument('--val_path',type=str,default='./SAMPLE') # test data path
     
     parser.add_argument('--checkpoint_path',type=str,default='./pre_trained/generator.pkl') # path where checkpoint to load exists
-    parser.add_argument('--lr_loss_weight',            type=float, help='left-right consistency weight', default=1.0)
+    
+    parser.add_argument('--lr_loss_weight',            type=float, help='left-right consistency weight', default=1.0) 
     parser.add_argument('--alpha_image_loss',          type=float, help='weight between SSIM and L1 in the image loss', default=0.85)
     parser.add_argument('--disp_gradient_loss_weight', type=float, help='disparity smoothness weigth', default=0.1)
     parser.add_argument('--rectilinear_mode', help='rectilinear mode', action='store_true')
     parser.add_argument('--KITTI', help='KITTI', action='store_true')
     parser.add_argument('--ThreeD', help='ThreeD', action='store_true')
-    parser.add_argument('--AAGAN', help='AAGAN', action='store_true')
 
     parser.add_argument('--fov', type=float, help='Horizontal field of view (in degrees)', default=82.5)
     parser.add_argument('--input_height',              type=int,   help='input height', default=256)
     parser.add_argument('--input_width',               type=int,   help='input width', default=512)
 
-    parser.add_argument('--kitti_width', type=int, default=512)
-    parser.add_argument('--kitti_height', type=int, default=256)
-    parser.add_argument('--image_size', type=int, default=64)
-    parser.add_argument('--z_dim', type=int, default=100)
-    parser.add_argument('--g_conv_dim', type=int, default=64)
-    parser.add_argument('--d_conv_dim', type=int, default=64)
-    
     parser.add_argument('--num_epochs', type=int, default=10)
     parser.add_argument('--batch_size', type=int, default=16)
-    parser.add_argument('--sample_size', type=int, default=100)
     parser.add_argument('--num_workers', type=int, default=2)
     parser.add_argument('--lr', type=float, default=0.00002)
     parser.add_argument('--beta1', type=float, default=0.5)        # momentum1 in Adam
     parser.add_argument('--beta2', type=float, default=0.999)      # momentum2 in Adam
     
-    parser.add_argument('--mode', type=str, default='train')
+    parser.add_argument('--mode', type=str, default='train')  # train,sample and make
     parser.add_argument('--model_name', type=str, default='./checkpoints/default')
      
     parser.add_argument('--model_path', type=str, default='models')
     parser.add_argument('--sample_path', type=str, default='samples')
     parser.add_argument('--eval_path', type=str, default='evaluate')
 
-    parser.add_argument('--image_path', type=str, default='./input/')
     parser.add_argument('--log_step', type=int , default=10)
-    parser.add_argument('--sample_step', type=int , default=500)
-    parser.add_argument('--checkpoint_step', type=int , default=500)
+    parser.add_argument('--sample_step', type=int , default=500)   # Every 500 batch num, do sampling
+    parser.add_argument('--checkpoint_step', type=int , default=500) # Every 500 batch num, save checkpoint
 
-
-#    parser.add_argument('--test_path', type=str, default='./testset/')
-    
     config = parser.parse_args()
     
     print(config)
